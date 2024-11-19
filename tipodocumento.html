@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Tipos de Documento</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto mt-10">
+    <a href="dashboard.html" class="bg-gray-500 text-white px-4 py-2 rounded mb-6 hover:bg-gray-600">
+      Volver Atrás
+    </a>
+    <br>
+
+    <h1 class="text-2xl font-semibold text-gray-700 mb-4">Administrar Tipos de Documento</h1>
+    
+    <button onclick="abrirFormularioAgregar()" class="bg-indigo-500 text-white px-4 py-2 rounded mb-6 hover:bg-indigo-600">
+      Agregar Tipo de Documento
+    </button>
+
+    <table class="min-w-full bg-white border border-gray-200">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="py-2 px-4 border-b">ID</th>
+          <th class="py-2 px-4 border-b">Nombre</th>
+          <th class="py-2 px-4 border-b">Descripción</th>
+          <th class="py-2 px-4 border-b">Fecha de Expiración</th>
+          <th class="py-2 px-4 border-b">Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tipoDocumentoTableBody">
+        <!-- Se llenará dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal para agregar y editar tipo de documento -->
+  <div id="modalFormulario" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+    <div class="bg-white p-6 rounded shadow-md w-96">
+        <h2 id="modalTitulo" class="text-xl font-semibold text-gray-700 mb-4">Agregar Tipo de Documento</h2>
+        <form id="tipoDocumentoForm">
+            <input type="hidden" id="tipoDocumentoId">
+            
+            <div class="mb-4">
+                <label for="categoriaDocumento" class="block text-gray-700 mb-2">Categoría de Documento</label>
+                <select id="categoriaDocumento" class="w-full px-3 py-2 border rounded" required>
+                    <!-- Las categorías se cargarán dinámicamente -->
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="nombre" class="block text-gray-700 mb-2">Nombre</label>
+                <input type="text" id="nombre" class="w-full px-3 py-2 border rounded" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="descripcion" class="block text-gray-700 mb-2">Descripción</label>
+                <textarea id="descripcion" class="w-full px-3 py-2 border rounded" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="fechaExpiracion" class="block text-gray-700 mb-2">Fecha de Expiración</label>
+                <input type="datetime-local" id="fechaExpiracion" class="w-full px-3 py-2 border rounded" required>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="button" onclick="cerrarFormulario()" class="bg-gray-500 text-white px-4 py-2 rounded mr-2 hover:bg-gray-600">
+                    Cancelar
+                </button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+
+  <script src="tipodocumento.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Estudiantes</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto mt-10">
+    <a href="dashboard.html" class="bg-gray-500 text-white px-4 py-2 rounded mb-6 hover:bg-gray-600">
+      Volver Atrás
+    </a>
+    <br>
+
+    <h1 class="text-2xl font-semibold text-gray-700 mb-4">Administrar Estudiantes</h1>
+    
+    <button onclick="abrirFormularioAgregar()" class="bg-indigo-500 text-white px-4 py-2 rounded mb-6 hover:bg-indigo-600">
+      Agregar Estudiante
+    </button>
+
+    <table class="min-w-full bg-white border border-gray-200">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="py-2 px-4 border-b">ID</th>
+          <th class="py-2 px-4 border-b">Nombre</th>
+          <th class="py-2 px-4 border-b">Apellido</th>
+          <th class="py-2 px-4 border-b">Nro. Registro</th>
+          <th class="py-2 px-4 border-b">Carrera</th>
+          <th class="py-2 px-4 border-b">Estado</th>
+          <th class="py-2 px-4 border-b">Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="estudianteTableBody">
+        <!-- Se llenará dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal para agregar y editar estudiante -->
+  <div id="modalFormulario" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+    <div class="bg-white p-6 rounded shadow-md w-full max-w-2xl">
+      <h2 class="text-xl font-semibold text-gray-700 mb-4" id="modalTitulo">Agregar Estudiante</h2>
+      <form id="estudianteForm" class="space-y-4">
+        <input type="hidden" id="estudianteId">
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="nombre" class="block text-gray-600">Nombre</label>
+            <input type="text" id="nombre" class="w-full border border-gray-300 rounded px-3 py-2" required>
+          </div>
+          
+          <div>
+            <label for="apellido" class="block text-gray-600">Apellido</label>
+            <input type="text" id="apellido" class="w-full border border-gray-300 rounded px-3 py-2" required>
+          </div>
+        </div>
+  
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="nroRegistro" class="block text-gray-600">Nro. Registro</label>
+            <input type="text" id="nroRegistro" class="w-full border border-gray-300 rounded px-3 py-2" required>
+          </div>
+          <div>
+            <label for="email" class="block text-gray-600">Email</label>
+            <input type="email" id="email" class="w-full border border-gray-300 rounded px-3 py-2" required>
+          </div>
+          <div>
+            <label for="fechaNacimiento" class="block text-gray-600">Fecha Nacimiento</label>
+            <input type="date" id="fechaNacimiento" class="w-full border border-gray-300 rounded px-3 py-2" required>
+          </div>
+         
+        </div>
+  
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="idCarrera" class="block text-gray-600">Carrera</label>
+            <select id="idCarrera" class="w-full border border-gray-300 rounded px-3 py-2" required>
+              <!-- Opciones cargadas dinámicamente -->
+            </select>
+          </div>
+        </div>
+  
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="telefono" class="block text-gray-600">Teléfono</label>
+            <input type="text" id="telefono" class="w-full border border-gray-300 rounded px-3 py-2" required>
+          </div>
+  
+          
+        </div>
+        
+        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Guardar</button>
+        <button type="button" onclick="cerrarFormulario()" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="estudiante.js"></script>
+</body>
+</html>

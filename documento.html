@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Documentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto mt-10">
+    <a href="dashboard.html" class="bg-gray-500 text-white px-4 py-2 rounded mb-6 hover:bg-gray-600">
+      Volver Atrás
+    </a>
+    <br>
+
+    <h1 class="text-2xl font-semibold text-gray-700 mb-4">Administrar Documentos</h1>
+    
+    <button onclick="abrirFormularioAgregar()" class="bg-indigo-500 text-white px-4 py-2 rounded mb-6 hover:bg-indigo-600">
+      Agregar Documento
+    </button>
+    <div class="mb-4">
+        <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Buscar documentos..." 
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+    </div>
+    <table class="min-w-full bg-white border border-gray-200">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="py-2 px-4 border-b">ID</th>
+          <th class="py-2 px-4 border-b">Nombre Documento</th>
+          <th class="py-2 px-4 border-b">Extension</th>
+          <th class="py-2 px-4 border-b">Tipo Documento</th>
+          <th class="py-2 px-4 border-b">Nombre Estudiante</th>
+          <th class="py-2 px-4 border-b">Registro Estudiante</th>
+          <th class="py-2 px-4 border-b">Fecha Subida</th>
+          <th class="py-2 px-4 border-b">Estado</th>
+          <th class="py-2 px-4 border-b">Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="documentoTableBody">
+        <!-- Se llenará dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal para agregar y editar documento -->
+  <div class="container mx-auto p-6">
+    <!-- Modal de Formulario -->
+    <div id="modalFormulario" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modalTitulo" class="text-xl font-semibold text-gray-700">Agregar Documento</h2>
+                <button onclick="cerrarFormulario()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form id="documentoForm" onsubmit="guardarDocumento(event)" class="space-y-4">
+                <input type="hidden" id="documentoId">
+                
+                <div class="space-y-2">
+                    <label for="estudiante" class="block text-sm font-medium text-gray-700">Estudiante</label>
+                    <select id="estudiante" required class="w-full p-2 border rounded-md">
+                        <option value="">Seleccione un estudiante</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="gestion" class="block text-sm font-medium text-gray-700">Gestión</label>
+                    <select id="gestion" required class="w-full p-2 border rounded-md">
+                        <option value="">Seleccione una gestión</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="tipoDocumento" class="block text-sm font-medium text-gray-700">Tipo Documento</label>
+                    <select id="tipoDocumento" required class="w-full p-2 border rounded-md">
+                        <option value="">Seleccione un tipo de documento</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                  <label for="legalizado" class="block text-sm font-medium text-gray-700">Estado de Legalización</label>
+                  <select id="legalizado" required class="w-full p-2 border rounded-md bg-white">
+                      <option value="false">No Legalizado</option>
+                      <option value="true">Legalizado</option>
+                  </select>
+              </div>
+
+                <div id="archivoContainer" class="space-y-2">
+                    <label for="archivoDocumento" class="block text-sm font-medium text-gray-700">Archivo</label>
+                    <input type="file" id="archivoDocumento" class="w-full p-2 border rounded-md">
+                    
+                    <div id="archivoActual" class="hidden mt-2 p-2 bg-gray-50 rounded-md">
+                        <p class="text-sm text-gray-600">
+                            Archivo actual: <span class="font-medium"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-4">
+                    <button type="button" onclick="cerrarFormulario()" 
+                            class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
+                        Cancelar
+                    </button>
+                    <button type="submit" 
+                            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ <!-- Reemplaza tu modal actual con este -->
+ <div id="modalVerDocumento" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white rounded-lg shadow-lg w-[800px] flex flex-col">
+      <!-- Encabezado del modal -->
+      <div class="flex justify-between items-center p-4 border-b">
+          <h2 id="modalDocumentoTitulo" class="text-xl font-semibold text-gray-700"></h2>
+          <button id="cerrarModal" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times"></i>
+          </button>
+      </div>
+      
+      <!-- Contenido del documento -->
+      <div class="p-4">
+          <!-- Contenedor con tamaño fijo -->
+          <div class="w-full h-[600px] flex justify-center items-center bg-gray-100 rounded-lg overflow-hidden">
+              <div id="modalDocumentoContenido" class="w-full h-full flex justify-center items-center">
+                  <!-- El contenido del documento se insertará aquí -->
+              </div>
+          </div>
+      </div>
+      
+      <!-- Pie del modal con botones -->
+      <div class="flex justify-end space-x-2 p-4 border-t">
+          <button id="descargarDocumento" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+              <i class="fas fa-download mr-2"></i>Descargar
+          </button>
+          <button id="cerrarModalBtn" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
+              <i class="fas fa-times mr-2"></i>Cerrar
+          </button>
+      </div>
+  </div>
+</div>
+  <script src="documento.js"></script>
+</body>
+</html>

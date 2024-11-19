@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestión Documental - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex bg-gray-100">
+    <!-- Sidebar -->
+    <div class="bg-white shadow-lg w-64 p-6 flex flex-col h-screen">
+        <div class="text-center border-b border-gray-200 pb-6">
+            <h2 class="text-xl font-bold text-gray-700">Dashboard</h2>
+            <p class="text-sm text-gray-500">Sistema de Gestión Documental</p>
+        </div>
+        <!-- Documentos Menu -->
+        <div class="cursor-pointer" onclick="toggleMenu('documentos')">
+            <div class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+                Documentos
+                <svg id="documentosArrow" class="ml-auto w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+            <div id="documentosMenu" class="ml-6 space-y-2 hidden">
+                <a href="documento.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Gestionar Documentos
+                </a>
+                <a href="categoriadocumento.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0013.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    Categoria Documento
+                </a>
+                <a href="tipodocumento.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z" />
+                    </svg>
+                    Tipo Documento
+                </a>
+                <a href="gestion.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Configuración
+                </a>
+            </div>
+        </div>
+
+        <!-- Reportes Menu -->
+        <div class="cursor-pointer" onclick="toggleMenu('reportes')">
+            <div class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Reportes
+                <svg id="reportesArrow" class="ml-auto w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+            <div id="reportesMenu" class="ml-6 space-y-2 hidden">
+                <a href="seguimientoestudiante.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Generar Seguimiento
+                </a>
+                <a href="alertaestudiante.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    Generar Alertas
+                </a>
+            </div>
+        </div>
+
+        <!-- Seguridad Menu -->
+        <div class="cursor-pointer" onclick="toggleMenu('seguridad')">
+            <div class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Seguridad
+                <svg id="seguridadArrow" class="ml-auto w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+            <div id="seguridadMenu" class="ml-6 space-y-2 hidden">
+                <a href="usuario.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    Gestión de Usuarios
+                </a>
+                <a href="#" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    Administrar Roles
+                  </a>
+                </div>
+            </div>
+            <!-- Parámetros de Estudiante Menu -->
+        <div class="cursor-pointer" onclick="toggleMenu('parametrosEstudiante')">
+          <div class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              Parámetros de Estudiante
+              <svg id="parametrosEstudianteArrow" class="ml-auto w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+          </div>
+          <div id="parametrosEstudianteMenu" class="ml-6 space-y-2 hidden">
+              <a href="facultades.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 4v-5a1 1 0 011-1h4a1 1 0 011 1v5m-5 0h5" />
+                  </svg>
+                  Facultad
+              </a>
+              <a href="carrera.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  Carrera
+              </a>
+              <a href="estudiante.html" class="flex items-center p-3 text-gray-700 hover:bg-gray-200 transition rounded-md">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Estudiante
+              </a>
+          </div>
+      </div>
+
+      <!-- Logout -->
+      <div class="mt-auto p-6 border-t border-gray-200 cursor-pointer" onclick="logout()">
+          <div class="flex items-center text-gray-700 hover:bg-gray-200 transition rounded-md p-3">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Cerrar Sesión
+          </div>
+      </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="flex-grow p-6">
+      <div class="flex justify-between items-center mb-6">
+          <h1 class="text-3xl font-semibold text-gray-700">Bienvenido al Dashboard</h1>
+          <span id="welcomeMessage" class="text-gray-600">Sesión Iniciada: Usuario</span>
+      </div>
+
+      <!-- Content Display Area -->
+      <div id="contentArea" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="seguimientoestudiante.html">
+          <div class="p-4 bg-white shadow-md rounded-lg transform hover:scale-105 transition duration-300">
+             
+            <h2 class="text-xl font-bold text-gray-700">Ir a Seguimiento</h2>
+            <p>Atajo mas rapido para ir a seguimiento de Estudiantes.</p>
+        </div>
+        </a>
+         
+
+        <a href="estudiante.html">
+          <div class="p-4 bg-white shadow-md rounded-lg transform hover:scale-105 transition duration-300">
+             
+            <h2 class="text-xl font-bold text-gray-700">Ir a Gestion de Estudiantes</h2>
+            <p>Atajo mas rapido para ir a gestion de Estudiantes.</p>
+        </div>
+        </a>
+
+        <a href="gestion.html">
+          <div class="p-4 bg-white shadow-md rounded-lg transform hover:scale-105 transition duration-300">
+            <h2 class="text-xl font-bold text-gray-700">Ir a Configuracion</h2>
+            <p>Atajo mas rapido para ir a Configuracion.</p>
+        </div>
+        </a>
+      </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
